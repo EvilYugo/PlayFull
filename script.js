@@ -1,16 +1,24 @@
 // script.js
 
-const buzzWords = [
-    "Just Do It", "Keep Moving Forward", "To Infinity and Beyond", "Seize the Day", "Stay Hungry, Stay Foolish", 
-    "Think Different", "Imagination is More Important than Knowledge", "The Best is Yet to Come", 
-    "Carpe Diem", "I Have a Dream", "Live Long and Prosper", "May the Force be With You", "I'll Be Back",
-    "To Be or Not to Be", "Elementary, My Dear Watson", "Here's Looking at You, Kid"
+const words = [
+    "Mein Block", "Gheddo", "Ersguterjunge", "Was Hast Du Gedacht", "Straßenjunge", 
+    "Chabos wissen wer der Babo ist", "Fick dein Money", "Nie ein Rapper", "Frei", 
+    "Kopf kaputt", "Jung, Brutal, Gutaussehend", "Mord", "Asphalt Massaka", "Blyat",
+    "Ich bin 2 Berliner", "Ich und keine Maske", "Niemals Antäuschen", "Badewiese",
+    "Echte Männer", "Egoist"
+];
+
+const quotes = [
+    "Mama, ich hab' 'nen Porsche gekauft - Bushido",
+    "Das ist Alpha, kein Beta - Kollegah",
+    "Ja, du bist tight, ich bin tighter - Fler",
+    "Stress ohne Grund macht den Puls auf 180 - Farid Bang",
+    "Du bist die Sonne meines Lebens, Baby, doch ich bin ein Mond - Kool Savas"
 ];
 
 const toggleButton = document.getElementById('toggleButton');
 const quoteContainer = document.getElementById('quoteContainer');
 let interval;
-let wordCount = 0;
 let isAnimating = false;
 
 toggleButton.addEventListener('click', () => {
@@ -22,19 +30,19 @@ toggleButton.addEventListener('click', () => {
             interval = null;
             stopAnimations();
             showQuote();
+            document.body.style.backgroundColor = 'black'; // Change background color to black
             toggleButton.textContent = "Lass düsen";
         } else {
             startDisplayingWords();
-            toggleButton.textContent = getRandomElement(buzzWords);
+            toggleButton.textContent = getRandomElement(words);
         }
     }
 });
 
 function startDisplayingWords() {
     interval = setInterval(() => {
-        const word = buzzWords[wordCount % buzzWords.length];
+        const word = getRandomElement(words);
         displayWord(word);
-        wordCount++;
     }, 2000); // Adjusted display interval
 }
 
@@ -80,11 +88,6 @@ function stopAnimations() {
 function showQuote() {
     quoteContainer.classList.remove('hidden');
     quoteContainer.innerHTML = getRandomElement(quotes);
-    document.body.style.backgroundColor = 'black'; // Change background color to black
-    setTimeout(() => {
-        toggleButton.classList.toggle('clicked');
-        isAnimating = false;
-    }, 1000); // Delay before re-enabling button
 }
 
 function getRandomElement(arr) {
