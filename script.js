@@ -1,6 +1,5 @@
 // script.js
 const words = [
-    // Add your predefined texts here
     "Innovation", "Synergy", "Disruptive", "Paradigm", "Leverage", "Scalability", "Ecosystem", "Holistic", "Bandwidth", "Streamline"
 ];
 
@@ -11,6 +10,7 @@ const buzzWords = [
 const toggleButton = document.getElementById('toggleButton');
 const quoteContainer = document.getElementById('quoteContainer');
 let interval;
+let wordElement;
 
 toggleButton.addEventListener('click', () => {
     if (interval) {
@@ -25,25 +25,24 @@ toggleButton.addEventListener('click', () => {
 
 function startDisplayingWords() {
     interval = setInterval(() => {
-        const word = getRandomElement(words);
-        const wordElement = createWordElement(word);
-        document.body.appendChild(wordElement);
-
-        setTimeout(() => {
+        if (wordElement) {
             document.body.removeChild(wordElement);
-        }, 2000);
-    }, 500);
+        }
+        const word = getRandomElement(words);
+        wordElement = createWordElement(word);
+        document.body.appendChild(wordElement);
+    }, 2000);
 }
 
 function createWordElement(word) {
     const element = document.createElement('div');
     element.className = 'word';
     element.textContent = word;
-    element.style.fontSize = `${getRandomInt(20, 50)}px`;
+    element.style.fontSize = `${getRandomInt(40, 200)}px`; // Adjusted size range
     element.style.color = getRandomColor();
     element.style.fontFamily = getRandomFont();
-    element.style.top = `${getRandomInt(0, 80)}vh`;
-    element.style.left = `${getRandomInt(0, 80)}vw`;
+    element.style.top = `${getRandomInt(0, 70)}vh`; // Adjusted range for full screen coverage
+    element.style.left = `${getRandomInt(0, 70)}vw`; // Adjusted range for full screen coverage
     return element;
 }
 
