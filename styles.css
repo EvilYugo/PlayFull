@@ -12,7 +12,7 @@ body {
 
 @keyframes backgroundChange {
     0% { background-color: white; }
-    100% { background-color: #f0f0f0; }
+    100% { background-color: #d3d3d3; }
 }
 
 #container {
@@ -27,6 +27,22 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    border: 2px solid black;
+    border-radius: 20px; /* Rounder edges */
+    transition: all 1s ease; /* Smooth size increase */
+}
+
+#toggleButton.clicked {
+    background-color: black;
+    color: white;
+    border-color: white;
+    transform: scale(1.5);
+    animation: moveButton 0.5s infinite alternate;
+}
+
+@keyframes moveButton {
+    0% { transform: translateX(-10px); }
+    100% { transform: translateX(10px); }
 }
 
 .hidden {
@@ -45,7 +61,7 @@ body {
 
 .word {
     position: absolute;
-    animation: fadeInOut 2s linear;
+    animation: fadeInOut 1s linear; /* Faster transition */
     opacity: 0;
     transition: opacity 0.5s;
 }

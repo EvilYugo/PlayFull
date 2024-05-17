@@ -1,6 +1,10 @@
 // script.js
 const words = [
-    "Innovation", "Synergy", "Disruptive", "Paradigm", "Leverage", "Scalability", "Ecosystem", "Holistic", "Bandwidth", "Streamline"
+    "Mein Block", "Gheddo", "Ersguterjunge", "Was Hast Du Gedacht", "Straßenjunge", 
+    "Chabos wissen wer der Babo ist", "Fick dein Money", "Nie ein Rapper", "Frei", 
+    "Kopf kaputt", "Jung, Brutal, Gutaussehend", "Mord", "Asphalt Massaka", "Blyat",
+    "Ich bin 2 Berliner", "Ich und keine Maske", "Niemals Antäuschen", "Badewiese",
+    "Echte Männer", "Egoist"
 ];
 
 const buzzWords = [
@@ -16,6 +20,7 @@ let interval;
 let wordElement;
 
 toggleButton.addEventListener('click', () => {
+    toggleButton.classList.toggle('clicked');
     if (interval) {
         clearInterval(interval);
         interval = null;
@@ -27,6 +32,7 @@ toggleButton.addEventListener('click', () => {
 });
 
 function startDisplayingWords() {
+    let wordIndex = 0;
     interval = setInterval(() => {
         if (wordElement) {
             wordElement.style.opacity = 0;
@@ -34,16 +40,17 @@ function startDisplayingWords() {
                 if (wordElement) {
                     document.body.removeChild(wordElement);
                 }
-                displayWord();
+                displayWord(words[wordIndex]);
+                wordIndex = (wordIndex + 1) % words.length;
             }, 500); // Match the transition duration
         } else {
-            displayWord();
+            displayWord(words[wordIndex]);
+            wordIndex = (wordIndex + 1) % words.length;
         }
     }, 2000);
 }
 
-function displayWord() {
-    const word = getRandomElement(words);
+function displayWord(word) {
     wordElement = createWordElement(word);
     document.body.appendChild(wordElement);
     setTimeout(() => {
