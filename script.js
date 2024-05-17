@@ -4,16 +4,16 @@ const words = [
 ];
 
 const buzzWords = [
-    "Click Here", "Press Me", "Start", "Go", "Begin", "Activate", "Launch", "Engage", "Enter", "Commence"
+    "Just Do It", "Keep Moving Forward", "To Infinity and Beyond", "Seize the Day", "Stay Hungry, Stay Foolish", 
+    "Think Different", "Imagination is More Important than Knowledge", "The Best is Yet to Come", 
+    "Carpe Diem", "I Have a Dream", "Live Long and Prosper", "May the Force be With You", "I'll Be Back",
+    "To Be or Not to Be", "Elementary, My Dear Watson", "Here's Looking at You, Kid"
 ];
 
 const toggleButton = document.getElementById('toggleButton');
 const quoteContainer = document.getElementById('quoteContainer');
 let interval;
-<<<<<<< HEAD
 let wordElement;
-=======
->>>>>>> bdfd92b7210eed61d6ed31e51efc5d5a866059f3
 
 toggleButton.addEventListener('click', () => {
     if (interval) {
@@ -28,43 +28,38 @@ toggleButton.addEventListener('click', () => {
 
 function startDisplayingWords() {
     interval = setInterval(() => {
-<<<<<<< HEAD
         if (wordElement) {
-            document.body.removeChild(wordElement);
+            wordElement.style.opacity = 0;
+            setTimeout(() => {
+                if (wordElement) {
+                    document.body.removeChild(wordElement);
+                }
+                displayWord();
+            }, 500); // Match the transition duration
+        } else {
+            displayWord();
         }
-        const word = getRandomElement(words);
-        wordElement = createWordElement(word);
-        document.body.appendChild(wordElement);
     }, 2000);
-=======
-        const word = getRandomElement(words);
-        const wordElement = createWordElement(word);
-        document.body.appendChild(wordElement);
+}
 
-        setTimeout(() => {
-            document.body.removeChild(wordElement);
-        }, 2000);
-    }, 500);
->>>>>>> bdfd92b7210eed61d6ed31e51efc5d5a866059f3
+function displayWord() {
+    const word = getRandomElement(words);
+    wordElement = createWordElement(word);
+    document.body.appendChild(wordElement);
+    setTimeout(() => {
+        wordElement.style.opacity = 1;
+    }, 10); // Trigger the fade-in effect
 }
 
 function createWordElement(word) {
     const element = document.createElement('div');
     element.className = 'word';
     element.textContent = word;
-<<<<<<< HEAD
     element.style.fontSize = `${getRandomInt(40, 200)}px`; // Adjusted size range
     element.style.color = getRandomColor();
     element.style.fontFamily = getRandomFont();
-    element.style.top = `${getRandomInt(0, 70)}vh`; // Adjusted range for full screen coverage
-    element.style.left = `${getRandomInt(0, 70)}vw`; // Adjusted range for full screen coverage
-=======
-    element.style.fontSize = `${getRandomInt(20, 50)}px`;
-    element.style.color = getRandomColor();
-    element.style.fontFamily = getRandomFont();
-    element.style.top = `${getRandomInt(0, 80)}vh`;
-    element.style.left = `${getRandomInt(0, 80)}vw`;
->>>>>>> bdfd92b7210eed61d6ed31e51efc5d5a866059f3
+    element.style.top = `${getRandomInt(0, 80)}vh`; // Adjusted range for full screen coverage
+    element.style.left = `${getRandomInt(0, 80)}vw`; // Adjusted range for full screen coverage
     return element;
 }
 
@@ -91,6 +86,9 @@ function getRandomColor() {
 }
 
 function getRandomFont() {
-    const fonts = ["Arial", "Verdana", "Times New Roman", "Georgia", "Courier New", "Lucida Console"];
+    const fonts = [
+        "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana", 
+        "Times New Roman", "Georgia", "Courier New", "Lucida Console"
+    ];
     return getRandomElement(fonts);
 }
