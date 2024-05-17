@@ -1,4 +1,4 @@
-// script.js
+// script.js 
 const words = [
     "Mein Block", "Gheddo", "Ersguterjunge", "Was Hast Du Gedacht", "Straßenjunge", 
     "Chabos wissen wer der Babo ist", "Fick dein Money", "Nie ein Rapper", "Frei", 
@@ -9,7 +9,7 @@ const words = [
 
 const buzzWords = [
     "Inshallah", "Wallah", "To Infinity and Beyond, brudi", "Shalom & Seize the Day", "Stay Hungry, Stay Inshallah", 
-    "Think Different, wallah", "Imagination is More Important than Knowledge", "The Best is Yet to Come, habibi", 
+    "Think Different,", "Imagination is More Important than Knowledge", "The Best is Yet to Come, habibi", 
     "Carpe Diem, habibi", "I Have a Dream, wallah", "Live Long and Prosper", "May the Force be With You, habibi", "I'll Be Back",
     "Shalom", "Inshallah, My Dear Watson", "Here's Looking at You, habibi"
 ];
@@ -17,7 +17,6 @@ const buzzWords = [
 const toggleButton = document.getElementById('toggleButton');
 const quoteContainer = document.getElementById('quoteContainer');
 let interval;
-let wordElement;
 let wordCount = 0;
 let quoteIndex = 0;
 const quotes = [
@@ -35,9 +34,9 @@ toggleButton.addEventListener('click', () => {
         interval = null;
         showQuote();
         document.body.style.backgroundColor = 'black'; // Change background color to black
-        toggleButton.textContent = ""; // Clear button text
         removeAllWords(); // Stop displaying words
         removeGradientAnimation(); // Stop gradient animation
+        toggleButton.textContent = "Start"; // Reset button text
     } else {
         startDisplayingWords();
         toggleButton.textContent = getRandomElement(buzzWords);
@@ -45,38 +44,22 @@ toggleButton.addEventListener('click', () => {
 });
 
 function startDisplayingWords() {
-    let wordIndex = 0;
     interval = setInterval(() => {
-        if (wordElement) {
-            wordElement.style.opacity = 0;
-            setTimeout(() => {
-                if (wordElement) {
-                    document.body.removeChild(wordElement);
-                }
-                displayWord(words[wordIndex]);
-                wordIndex = (wordIndex + 1) % words.length;
-                wordCount++;
-                if (wordCount % 3 === 0) {
-                    wordElement.classList.add('bold-underline');
-                }
-            }, 500); // Match the transition duration
-        } else {
-            displayWord(words[wordIndex]);
-            wordIndex = (wordIndex + 1) % words.length;
-            wordCount++;
-            if (wordCount % 3 === 0) {
-                wordElement.classList.add('bold-underline');
-            }
-        }
+        const word = words[wordCount % words.length];
+        displayWord(word);
+        wordCount++;
     }, 1000); // Faster transition
 }
 
 function displayWord(word) {
-    wordElement = createWordElement(word);
-    document.body.insertBefore(wordElement, toggleButton); // Insert word before the toggleButton
+    const wordElement = createWordElement(word);
+    document.body.appendChild(wordElement);
     setTimeout(() => {
-        wordElement.style.opacity = 1;
-    }, 10); // Trigger the fade-in effect
+        wordElement.style.opacity = 0;
+        setTimeout(() => {
+            document.body.removeChild(wordElement);
+        }, 500); // Match the transition duration
+    }, 5000); // Display time for each word
 }
 
 function createWordElement(word) {
@@ -133,8 +116,9 @@ function getRandomColor() {
 
 function getRandomFont() {
     const fonts = [
-        "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana", 
-        "Times New Roman", "Georgia", "Courier New", "Lucida Console"
+        "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana"
     ];
-    return getRandomElement(fonts);
 }
+    function getRandomFont() {
+        return getRandomElement(fonts);
+    }

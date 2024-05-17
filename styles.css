@@ -25,9 +25,19 @@ body {
     cursor: pointer;
     border: 2px solid black;
     border-radius: 20px; /* Rounder edges */
-    transition: all 1s ease; /* Smooth size increase */
-    position: relative; /* Ensure the button has a stacking context */
+    position: absolute; /* Position the button absolutely */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the button */
     z-index: 2; /* Ensure the button appears on top */
+}
+
+#toggleButton.clicked {
+    background-color: black; /* Change background color */
+    color: white; /* Change text color */
+    border-color: white; /* Change border color */
+    transform: translate(-50%, -50%) scale(1.5); /* Increase size */
+    transition: all 1s ease; /* Smooth transition */
 }
 
 #quoteContainer {
