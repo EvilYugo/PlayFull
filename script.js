@@ -9,10 +9,10 @@ const words = [
 ];
 
 const buzzWords = [
-    "Just Do It", "Keep Moving Forward", "To Infinity and Beyond", "Seize the Day", "Stay Hungry, Stay Foolish", 
-    "Think Different", "Imagination is More Important than Knowledge", "The Best is Yet to Come", 
-    "Carpe Diem", "I Have a Dream", "Live Long and Prosper", "May the Force be With You", "I'll Be Back",
-    "To Be or Not to Be", "Elementary, My Dear Watson", "Here's Looking at You, Kid"
+    "Straßenkredit", "Mehr Kohle, mehr Probleme", "Baba Saad", "Mein Herz schlägt für Hip Hop", "Deutscher Sprechgesang", 
+    "Rapper aus Deutschland", "Ich bin ein Rapper", "Rap ist mein Leben", 
+    "Untergrund Rap", "Rap ist nicht tot", "Flow auf Deutsch", "Hip Hop Kultur", "Rapmusik für die Straße",
+    "Gangsta Rap", "Deutschrap Anthem", "Hoch die Tassen", "Raptexte voller Bedeutung"
 ];
 
 const toggleButton = document.getElementById('toggleButton');
@@ -49,20 +49,20 @@ function startDisplayingWords() {
         const word = words[wordCount % words.length];
         displayWord(word);
         wordCount++;
-    }, 1000); // Faster transition
+    }, 2000); // Adjusted display interval
 }
 
 function displayWord(word) {
     const wordElement = createWordElement(word);
     document.body.appendChild(wordElement);
     setTimeout(() => {
-        wordElement.style.opacity = 1;
+        wordElement.style.opacity = 1; // Fade in
         setTimeout(() => {
-            wordElement.style.opacity = 0;
+            wordElement.style.opacity = 0; // Fade out
             setTimeout(() => {
-                document.body.removeChild(wordElement);
-            }, 500); // Fade out duration
-        }, 4000); // Display time before fading out
+                document.body.removeChild(wordElement); // Remove the word element
+            }, 500); // Match the transition duration
+        }, 1500); // Display time before fading out
     }, 100); // Delay before fading in
 }
 
