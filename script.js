@@ -18,6 +18,15 @@ const toggleButton = document.getElementById('toggleButton');
 const quoteContainer = document.getElementById('quoteContainer');
 let interval;
 let wordElement;
+let wordCount = 0;
+let quoteIndex = 0;
+const quotes = [
+    "Mama, ich hab' 'nen Porsche gekauft - Bushido",
+    "Das ist Alpha, kein Beta - Kollegah",
+    "Ja, du bist tight, ich bin tighter - Fler",
+    "Stress ohne Grund macht den Puls auf 180 - Farid Bang",
+    "Du bist die Sonne meines Lebens, Baby, doch ich bin ein Mond - Kool Savas"
+];
 
 toggleButton.addEventListener('click', () => {
     toggleButton.classList.toggle('clicked');
@@ -25,6 +34,8 @@ toggleButton.addEventListener('click', () => {
         clearInterval(interval);
         interval = null;
         showQuote();
+        document.body.style.backgroundColor = 'black'; // Change background color to black
+        toggleButton.textContent = ""; // Clear button text
     } else {
         startDisplayingWords();
         toggleButton.textContent = getRandomElement(buzzWords);
@@ -42,12 +53,20 @@ function startDisplayingWords() {
                 }
                 displayWord(words[wordIndex]);
                 wordIndex = (wordIndex + 1) % words.length;
+                wordCount++;
+                if (wordCount % 3 === 0) {
+                    wordElement.classList.add('bold-underline');
+                }
             }, 500); // Match the transition duration
         } else {
             displayWord(words[wordIndex]);
             wordIndex = (wordIndex + 1) % words.length;
+            wordCount++;
+            if (wordCount % 3 === 0) {
+                wordElement.classList.add('bold-underline');
+            }
         }
-    }, 2000);
+    }, 1000); // Faster transition
 }
 
 function displayWord(word) {
@@ -73,6 +92,8 @@ function createWordElement(word) {
 function showQuote() {
     quoteContainer.classList.remove('hidden');
     quoteContainer.style.display = 'block';
+    quoteContainer.innerHTML = `<p style="font-size: 5em; color: white;">${quotes[quoteIndex]}</p>`;
+    quoteIndex = (quoteIndex + 1) % quotes.length;
 }
 
 function getRandomElement(arr) {

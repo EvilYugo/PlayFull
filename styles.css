@@ -36,13 +36,8 @@ body {
     background-color: black;
     color: white;
     border-color: white;
-    transform: scale(1.5);
-    animation: moveButton 0.5s infinite alternate;
-}
-
-@keyframes moveButton {
-    0% { transform: translateX(-10px); }
-    100% { transform: translateX(10px); }
+    transform: scale(2); /* Increase size to 200% */
+    animation: none; /* Remove button movement animation */
 }
 
 .hidden {
@@ -64,6 +59,11 @@ body {
     animation: fadeInOut 1s linear; /* Faster transition */
     opacity: 0;
     transition: opacity 0.5s;
+}
+
+.bold-underline {
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 @keyframes fadeInOut {
