@@ -1,4 +1,5 @@
-// script.js 
+// script.js
+
 const words = [
     "Mein Block", "Gheddo", "Ersguterjunge", "Was Hast Du Gedacht", "Straßenjunge", 
     "Chabos wissen wer der Babo ist", "Fick dein Money", "Nie ein Rapper", "Frei", 
@@ -8,10 +9,10 @@ const words = [
 ];
 
 const buzzWords = [
-    "Inshallah", "Wallah", "To Infinity and Beyond, brudi", "Shalom & Seize the Day", "Stay Hungry, Stay Inshallah", 
-    "Think Different,", "Imagination is More Important than Knowledge", "The Best is Yet to Come, habibi", 
-    "Carpe Diem, habibi", "I Have a Dream, wallah", "Live Long and Prosper", "May the Force be With You, habibi", "I'll Be Back",
-    "Shalom", "Inshallah, My Dear Watson", "Here's Looking at You, habibi"
+    "Just Do It", "Keep Moving Forward", "To Infinity and Beyond", "Seize the Day", "Stay Hungry, Stay Foolish", 
+    "Think Different", "Imagination is More Important than Knowledge", "The Best is Yet to Come", 
+    "Carpe Diem", "I Have a Dream", "Live Long and Prosper", "May the Force be With You", "I'll Be Back",
+    "To Be or Not to Be", "Elementary, My Dear Watson", "Here's Looking at You, Kid"
 ];
 
 const toggleButton = document.getElementById('toggleButton');
@@ -69,6 +70,7 @@ function createWordElement(word) {
     element.style.fontSize = `${getRandomInt(40, 200)}px`; // Adjusted size range
     element.style.color = getRandomColor();
     element.style.fontFamily = getRandomFont();
+    element.style.position = 'absolute'; // Position the words absolutely
     element.style.top = `${getRandomInt(0, 80)}vh`; // Adjusted range for full screen coverage
     element.style.left = `${getRandomInt(0, 80)}vw`; // Adjusted range for full screen coverage
     return element;
@@ -118,7 +120,5 @@ function getRandomFont() {
     const fonts = [
         "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana"
     ];
+    return getRandomElement(fonts);
 }
-    function getRandomFont() {
-        return getRandomElement(fonts);
-    }
