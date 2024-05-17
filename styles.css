@@ -7,7 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(90deg, white, #d3d3d3, white); /* Adjusted gradient */
+    background: linear-gradient(90deg, white, #d3d3d3, white); /* Gradient background */
 }
 
 .button {
@@ -15,28 +15,25 @@ body {
     font-size: 16px;
     cursor: pointer;
     border: none;
-    border-radius: 50px; /* Added border radius */
+    border-radius: 50px; /* Rounded button */
     transition: all 0.3s ease; /* Smooth transition */
 }
 
 .button.clicked {
-    background-color: black; /* Changed background color */
-    color: white; /* Changed text color */
+    background-color: black; /* Background color change */
+    color: white; /* Text color change */
+    transform: scale(2); /* Button scale increase */
 }
 
-.word {
+.quote {
     position: absolute;
-    animation: fadeWord 2s ease-in-out forwards; /* Added animation for word fade */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center quote container */
+    font-size: 2em; /* Larger font size */
+    color: white; /* White text color */
 }
 
-@keyframes fadeWord {
-    0% {
-        opacity: 0; /* Start with opacity 0 */
-    }
-    50% {
-        opacity: 1; /* Fade in */
-    }
-    100% {
-        opacity: 0; /* Fade out */
-    }
+.hidden {
+    display: none; /* Hide quote container initially */
 }
