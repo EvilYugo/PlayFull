@@ -56,11 +56,14 @@ function displayWord(word) {
     const wordElement = createWordElement(word);
     document.body.appendChild(wordElement);
     setTimeout(() => {
-        wordElement.style.opacity = 0;
+        wordElement.style.opacity = 1;
         setTimeout(() => {
-            document.body.removeChild(wordElement);
-        }, 500); // Match the transition duration
-    }, 5000); // Display time for each word
+            wordElement.style.opacity = 0;
+            setTimeout(() => {
+                document.body.removeChild(wordElement);
+            }, 500); // Fade out duration
+        }, 4000); // Display time before fading out
+    }, 100); // Delay before fading in
 }
 
 function createWordElement(word) {
@@ -68,8 +71,8 @@ function createWordElement(word) {
     element.className = 'word';
     element.textContent = word;
     element.style.fontSize = `${getRandomInt(40, 200)}px`; // Adjusted size range
-    element.style.color = getRandomColor();
-    element.style.fontFamily = getRandomFont();
+    element.style.color = getRandomFontColor(); // Random font color
+    element.style.fontFamily = getRandomFont(); // Random font family
     element.style.position = 'absolute'; // Position the words absolutely
     element.style.top = `${getRandomInt(0, 80)}vh`; // Adjusted range for full screen coverage
     element.style.left = `${getRandomInt(0, 80)}vw`; // Adjusted range for full screen coverage
@@ -97,6 +100,9 @@ function showQuote() {
     quoteContainer.style.display = 'block';
     quoteContainer.innerHTML = `<p style="font-size: 5em; color: white;">${quotes[quoteIndex]}</p>`;
     quoteIndex = (quoteIndex + 1) % quotes.length;
+    toggleButton.style.backgroundColor = 'white'; // Change button background color
+    toggleButton.style.color = 'black'; // Change button text color
+    document.body.style.backgroundColor = 'black'; // Change background color to black
 }
 
 function getRandomElement(arr) {
@@ -107,18 +113,14 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
 function getRandomFont() {
     const fonts = [
         "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana"
     ];
     return getRandomElement(fonts);
+}
+
+function getRandomFontColor() {
+    const colors = ['#000000', '#333333', '#666666', '#999999', '#00008B']; // Black, various shades of gray, dark blue
+    return getRandomElement(colors);
 }
