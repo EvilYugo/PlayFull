@@ -8,10 +8,10 @@ const words = [
 ];
 
 const buzzWords = [
-    "Just Do It", "Keep Moving Forward", "To Infinity and Beyond", "Seize the Day", "Stay Hungry, Stay Foolish", 
-    "Think Different", "Imagination is More Important than Knowledge", "The Best is Yet to Come", 
-    "Carpe Diem", "I Have a Dream", "Live Long and Prosper", "May the Force be With You", "I'll Be Back",
-    "To Be or Not to Be", "Elementary, My Dear Watson", "Here's Looking at You, Kid"
+    "Inshallah", "Keep Moving Forward, wallah", "Inshallah", "Seize the Day", "Stay Hungry, Stay Foolish, Inshallah", 
+    "Think Different", "Imagination is More Important than Knowledge, wallah", "The Best is Yet to Come, habibi", 
+    "Carpe Diem, wallah", "I Have a Dream, wallah", "Live Long and Prosper", "May the Force be With You", "Inshallah",
+    "To Be or Not to Be, shalom", "Inshallah, My Dear Watson", "Inshallah"
 ];
 
 const toggleButton = document.getElementById('toggleButton');
@@ -35,7 +35,9 @@ toggleButton.addEventListener('click', () => {
         interval = null;
         showQuote();
         document.body.style.backgroundColor = 'black'; // Change background color to black
-        toggleButton.textContent = ""; // Clear button text
+        removeAllWords(); // Stop displaying words
+        removeGradientAnimation(); // Stop gradient animation
+        toggleButton.textContent = "Verstanden, bruda."; // Change button text
     } else {
         startDisplayingWords();
         toggleButton.textContent = getRandomElement(buzzWords);
@@ -71,7 +73,7 @@ function startDisplayingWords() {
 
 function displayWord(word) {
     wordElement = createWordElement(word);
-    document.body.appendChild(wordElement);
+    document.body.insertBefore(wordElement, toggleButton); // Insert word before the toggleButton
     setTimeout(() => {
         wordElement.style.opacity = 1;
     }, 10); // Trigger the fade-in effect
@@ -87,6 +89,22 @@ function createWordElement(word) {
     element.style.top = `${getRandomInt(0, 80)}vh`; // Adjusted range for full screen coverage
     element.style.left = `${getRandomInt(0, 80)}vw`; // Adjusted range for full screen coverage
     return element;
+}
+
+function removeAllWords() {
+    const words = document.querySelectorAll('.word');
+    words.forEach(word => {
+        word.style.opacity = 0;
+        setTimeout(() => {
+            if (word.parentElement) {
+                document.body.removeChild(word);
+            }
+        }, 500); // Match the transition duration
+    });
+}
+
+function removeGradientAnimation() {
+    document.body.style.animation = 'none';
 }
 
 function showQuote() {
@@ -107,16 +125,4 @@ function getRandomInt(min, max) {
 function getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
-
-function getRandomFont() {
-    const fonts = [
-        "Roboto", "Open Sans", "Lobster", "Montserrat", "Arial", "Verdana", 
-        "Times New Roman", "Georgia", "Courier New", "Lucida Console"
-    ];
-    return getRandomElement(fonts);
-}
+    for (let i = 0; i <

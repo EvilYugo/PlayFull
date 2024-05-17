@@ -1,26 +1,22 @@
 /* styles.css */
 body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    overflow: hidden; /* Prevent scrollbars */
-    position: relative;
-    animation: backgroundChange 8s infinite alternate;
+    background: linear-gradient(to bottom, #ffffff, #dddddd); /* Gradient background */
+    animation: gradientTransition 4s ease infinite; /* Gradient animation */
 }
 
-@keyframes backgroundChange {
-    0% { background-color: white; }
-    100% { background-color: #d3d3d3; }
-}
-
-#container {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+@keyframes gradientTransition {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 #toggleButton {
@@ -30,43 +26,24 @@ body {
     border: 2px solid black;
     border-radius: 20px; /* Rounder edges */
     transition: all 1s ease; /* Smooth size increase */
+    position: relative; /* Ensure the button has a stacking context */
+    z-index: 2; /* Ensure the button appears on top */
 }
 
-#toggleButton.clicked {
-    background-color: black;
-    color: white;
-    border-color: white;
-    transform: scale(2); /* Increase size to 200% */
-    animation: none; /* Remove button movement animation */
+#quoteContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1;
 }
 
 .hidden {
     display: none;
 }
 
-#quoteContainer {
-    display: none;
-    animation: fadeIn 2s forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.word {
-    position: absolute;
-    animation: fadeInOut 1s linear; /* Faster transition */
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
 .bold-underline {
-    font-weight: bold;
     text-decoration: underline;
-}
-
-@keyframes fadeInOut {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+    font-weight: bold;
 }
