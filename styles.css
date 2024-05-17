@@ -1,59 +1,42 @@
 /* styles.css */
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #ffffff, #dddddd); /* Gradient background */
-    animation: gradientTransition 4s ease infinite; /* Gradient animation */
+    height: 100vh;
+    background: linear-gradient(90deg, white, #d3d3d3, white); /* Adjusted gradient */
 }
 
-@keyframes gradientTransition {
-    0% {
-        background-position: 0% 50%;
-    }
-    100% {
-        background-position: 100% 50%;
-    }
-}
-
-#toggleButton {
+.button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    border: 2px solid black;
-    border-radius: 20px; /* Rounder edges */
-    position: absolute; /* Position the button absolutely */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the button */
-    z-index: 2; /* Ensure the button appears on top */
+    border: none;
+    border-radius: 50px; /* Added border radius */
+    transition: all 0.3s ease; /* Smooth transition */
 }
 
-#toggleButton.clicked {
-    background-color: black; /* Change background color */
-    color: white; /* Change text color */
-    border-color: white; /* Change border color */
-    transform: translate(-50%, -50%) scale(1.5); /* Increase size */
-    transition: all 1s ease; /* Smooth transition */
+.button.clicked {
+    background-color: black; /* Changed background color */
+    color: white; /* Changed text color */
 }
 
-#quoteContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1;
+.word {
+    position: absolute;
+    animation: fadeWord 2s ease-in-out forwards; /* Added animation for word fade */
 }
 
-.hidden {
-    display: none;
-}
-
-.bold-underline {
-    text-decoration: underline;
-    font-weight: bold;
+@keyframes fadeWord {
+    0% {
+        opacity: 0; /* Start with opacity 0 */
+    }
+    50% {
+        opacity: 1; /* Fade in */
+    }
+    100% {
+        opacity: 0; /* Fade out */
+    }
 }
